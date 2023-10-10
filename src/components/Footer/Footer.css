@@ -1,0 +1,9 @@
+.footer{
+    text-align: center;
+    margin-top: 3rem;
+    height: 50px;
+}
+
+.footer p {
+    color: black;
+}
