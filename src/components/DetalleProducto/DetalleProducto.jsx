@@ -2,15 +2,17 @@ import RatingStars from '../RatingStars/RatingStars'
 
 function DetalleProducto({ producto }) {
 	const { id, title, image, price, description, rating } = producto || {}
-	if (!title || !image || !price || !description || !id  || !rating === undefined) {
+	if (!title || !image || !price || !description || !id || !rating === undefined) {
 		return null
 	}
 	return (
 		<>
-			<div className="imagen bg-red-700 col-span-2">imagen</div>
+			<div className="col-span-2 bg-white border p-3 rounded-2xl shadow-lg">
+				<img className="object-cover w-5/12 mx-auto h-full" src={image} alt="" />
+			</div>
 
-			<div className="detalles bg-blue-500 p-2">
-				<h3 className="text-xl font-bold text-center">{title}</h3>
+			<div className="border p-3 rounded-2xl bg-white shadow-lg">
+				<h3 className="text-xl font-bold text-center [text-wrap:balance]">{title}</h3>
 				<div className="flex gap-2 mt-2">
 					<span>{rating.rate}</span>
 					{/* <span className='flex'>
@@ -24,8 +26,12 @@ function DetalleProducto({ producto }) {
 						<RatingStars rating={rating} />
 					</span>
 				</div>
+
 				<div className="mt-10">
-					<span className="text-slate-500 text-2xl">${price}</span>
+					<p>{description}</p>
+				</div>
+				<div className="mt-10 text-end">
+					<span className="text-slate-500 text-3xl">${price}</span>
 				</div>
 
 				<div className="mt-10">

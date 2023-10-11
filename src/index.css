@@ -5,24 +5,33 @@
 @font-face {
   font-family: 'Inter';
   src: url('./assets/Fonts/Inter-Regular.ttf') format('ttf');
+  font-style: normal;
+  font-weight: normal;
 
 }
 
 @font-face {
   font-family: 'Inter-Light';
   src: url('./assets/Fonts/Inter-Light.ttf') format('ttf');
+  font-style: normal;
+  font-weight: 300;
  
 }
 
 @font-face {
   font-family: 'Inter-Bold';
   src: url('./assets/Fonts/Inter-Bold.ttf') format('ttf');
+  font-style: normal;
+  font-weight: 700;
+
   
 }
 
 @font-face {
   font-family: 'Inter-Black';
   src: url('./assets/Fonts/Inter-Black.ttf') format('ttf');
+  font-style: normal;
+  font-weight: 900;
  
 }
   
@@ -31,7 +40,7 @@
     background-color: #F2F1F8;
   }
   
-  .fuente-light {
+  /* .fuente-light {
     font-family: 'Inter-Light', sans-serif; 
   }
   
@@ -41,4 +50,4 @@
   
   .fuente-black {
     font-family: 'Inter-Black', sans-serif; 
-  }
+  } */

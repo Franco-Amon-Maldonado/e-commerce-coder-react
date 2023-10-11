@@ -20,7 +20,6 @@ function ItemListContainer() {
 		getProductos()
 	},[])
 
-	console.log(productos);
 	
 	
 	return (

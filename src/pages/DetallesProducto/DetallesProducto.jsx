@@ -30,7 +30,7 @@ function DetallesProducto() {
 
 	return (
 		<main className="container">
-			<h1 className='text-3xl font-extrabold text-center mt-10 mx-auto [width:70%;] border p-3 rounded-2xl shadow-md'>Detalles del producto</h1>
+			<h1 className='text-3xl font-extrabold text-center mt-10 mx-auto [width:70%;] bg-white border p-3 rounded-2xl shadow-md'>Detalles del producto</h1>
 			<div className="grid grid-cols-3 gap-4 p-10">
 				{spinner ? <Spinner /> : producto && producto.id ? <DetalleProducto producto={producto} /> : null}
 			</div>
