@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import CardProducts from "../CardProduct/CardProducts"
+import CardProducts from "../CardProductos/CardProducts"
 
 function ItemListContainer() {
 	const [productos, setProductos] = useState([])
@@ -19,6 +19,8 @@ function ItemListContainer() {
 	useEffect(()=>{
 		getProductos()
 	},[])
+
+	console.log(productos);
 	
 	
 	return (

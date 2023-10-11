@@ -1,0 +1,10 @@
+.star-rating {
+    display: flex;
+  }
+  
+  svg {
+
+    margin: 0.1em; 
+  }
+  
+  
