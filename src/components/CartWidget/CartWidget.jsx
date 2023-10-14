@@ -1,11 +1,14 @@
+import CartSvg from './CartSvg'
 import './CartWidget.css'
 
 function CartWidget() {
-
 	return (
 		<>
-            <img src="../../../public/cart.png" alt="carrito" />
-            <span className="ml-1"><sup>5</sup></span>
+
+			<CartSvg/>
+			<span>
+				<sup>5</sup>
+			</span>
 		</>
 	)
 }
