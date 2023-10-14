@@ -9,13 +9,13 @@ function DetalleProducto({ producto }) {
 	}
 	return (
 		<>
-			<div className="col-span-2 bg-white border p-3 rounded-2xl shadow-lg">
-				<img className="object-cover w-5/12 mx-auto h-full" src={image} alt="" />
+			<div className=" col-span-3 md:col-span-2 bg-white border p-3 rounded-2xl shadow-lg flex items-center">
+				<img className="object-cover w-8/12 lg:w-6/12 mx-auto" src={image} alt="" />
 			</div>
 
-			<div className="border p-3 rounded-2xl bg-white shadow-lg">
+			<div className=" col-span-3 md:col-span-1 border p-3 rounded-2xl bg-white shadow-lg flex flex-col justify-between">
 				<h3 className="text-xl font-bold text-center [text-wrap:balance]">{title}</h3>
-				<div className="flex gap-2 mt-2">
+				<div className="flex gap-2 mt-5">
 					<span>{rating.rate}</span>
 					<span>
 						<RatingStars rating={rating} />
@@ -23,11 +23,11 @@ function DetalleProducto({ producto }) {
 				</div>
 
 				<div className="mt-10">
-					<p>{description}</p>
+					<p className="px-2">{description}</p>
 				</div>
 
 				<div className="mt-10 text-end">
-					<span className="text-slate-500 text-3xl">${price}</span>
+					<span className="text-slate-500 mr-5 text-3xl">${price}</span>
 				</div>
 
 				<div className="flex gap-3">
@@ -37,10 +37,10 @@ function DetalleProducto({ producto }) {
 					<RestaSvg />
 				</div>
 
-				<div className="mt-10">
+				<div className="mt-10 flex justify-center">
 					<button
 						type="button"
-						className="text-slate-50 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+						className="text-slate-50 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-7 py-3 text-center mr-2 mb-2"
 					>
 						Agregar al carrito
 					</button>
