@@ -5,11 +5,11 @@ function Home() {
 	
 
 	return (
-		<main className="mt-10">
+		<main className="mt-10 p-5 md:p-7">
 			<h1 className="text-base md:text-2xl [color:#1976D2] bg-white text-center [font-weight:900] mb-10 [width:70%] m-auto border p-3 rounded-2xl shadow-md uppercase">
 				Todos nuestros productos
 			</h1>
-			<div className="container m-auto">
+			<div className="container">
 				<ItemListContainer />
 			</div>
 		</main>

@@ -9,6 +9,8 @@ function CardProducts({ producto}) {
 	}
 	return (
 		<Card sx={{ maxWidth: 345, borderRadius: 10 }} className="flex flex-col justify-between text-center p-5">
+			<Link className='h-full' to={`/detalle/${id}`}>
+			
 			<CardActionArea id="informacion">
 				<CardMedia
 					component="img"
@@ -18,7 +20,7 @@ function CardProducts({ producto}) {
 					alt={`Producto de la imagen ${title}`}
 				/>
 				<CardContent className="mt-5">
-					<Typography gutterBottom component="div" className="titulo">
+					<Typography gutterBottom  variant='subtitle1' className="titulo">
 						{title}
 					</Typography>
 					<Typography variant="body2" color="text.secondary" className="parrafo">
@@ -29,6 +31,7 @@ function CardProducts({ producto}) {
 					</Typography>
 				</CardContent>
 			</CardActionArea>
+			</Link>
 			<CardActions className="flex justify-center">
 				
 				<Button

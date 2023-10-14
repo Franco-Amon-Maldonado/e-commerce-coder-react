@@ -39,7 +39,7 @@ function DetallesProducto() {
 				<IconBack /> Volver
 			</Link>
 			<div className='flex justify-center'>
-				{spinner ? <Spinner />  : producto && producto.id ? <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-10"><DetalleProducto producto={producto} /></div>  : null}
+				{spinner ? <Spinner />  : producto && producto.id ? <div className="grid md:grid-cols-3 gap-4 p-10"><DetalleProducto producto={producto} /></div>  : null}
 			</div>
 		</main>
 	)
