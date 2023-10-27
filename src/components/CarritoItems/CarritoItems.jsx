@@ -1,11 +1,12 @@
 function CarritoItems({carrito}) {
 
-    const { nombre, precio} = carrito;
+    const { title, price, cantidad} = carrito;
 
     return ( 
-        <div>
-            <h1>{nombre}</h1>
-            <h1>{precio}</h1>
+        <div className="flex flex-col">
+            <h1>{title}</h1>
+            <h1>{price}</h1>
+            <h1>{cantidad}</h1>
         </div>
      );
 }
