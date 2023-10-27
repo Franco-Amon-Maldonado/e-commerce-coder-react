@@ -18,7 +18,7 @@ function Carrito() {
 				</div>
 
 				<div className="bg-white h-52 col-span-3 md:col-span-1 sticky top-28">
-					<h1>Resumen</h1>
+					<h2 className='font-bold text-2xl text-center p-4 border-b-gray-500'>Resumen de compra</h2>
 				</div>
 			</section>
 		</main>

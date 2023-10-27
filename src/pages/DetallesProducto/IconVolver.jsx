@@ -1,4 +1,4 @@
-function IconBack() {
+function IconVolver() {
 	return (
 		<svg
 			className="w-7 h-7 text-[#1976D2] dark:[#1976D2]"
@@ -18,4 +18,4 @@ function IconBack() {
 	)
 }
 
-export default IconBack
+export default IconVolver
