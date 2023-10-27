@@ -4,7 +4,7 @@ import RestaSvg from './RestaSvg'
 import SumaSvg from './SumaSvg'
 
 function DetalleProducto({ producto }) {
-	const [cantidad, setCantidad] = useState(0)
+	const [cantidad, setCantidad] = useState(1)
 
 	const { id, title, image, price, description, rating } = producto || {}
 	if (!title || !image || !price || !description || !id || !rating === undefined) {
