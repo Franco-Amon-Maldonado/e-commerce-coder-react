@@ -15,12 +15,6 @@ function NavBar() {
 						<li>
 							<Link to="/">Inicio</Link>
 						</li>
-						{/* <li>
-							<Link to="/nosotros">Nosotros</Link>
-						</li>
-						<li>
-							<Link to="/contacto">Contacto</Link>
-						</li> */}
 						<li className="flex flex-col">
 							<DropdownMenu />
 						</li>

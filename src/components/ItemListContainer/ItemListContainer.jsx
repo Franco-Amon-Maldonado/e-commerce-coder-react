@@ -6,16 +6,16 @@ import { useParams } from 'react-router-dom'
 function ItemListContainer() {
 	const [productos, setProductos] = useState([])
 
-	const { category } = useParams()
+	const { id } = useParams()
 
 	useEffect(() => {
 		async function getProductos() {
 			try {
 				const response = await axios.get('https://fakestoreapi.com/products')
 
-				if (category) {
-					const filterCategory = response.data.filter((categoria) => categoria.category === category)
-					setProductos(filterCategory)
+				if (id) {
+					const filterCategoria = response.data.filter((categoria) => categoria.category === id)
+					setProductos(filterCategoria)
 				} else {
 					setProductos(response.data)
 				}
@@ -24,7 +24,7 @@ function ItemListContainer() {
 			}
 		}
 		getProductos()
-	}, [category])
+	}, [id])
 
 	return (
 		<>
