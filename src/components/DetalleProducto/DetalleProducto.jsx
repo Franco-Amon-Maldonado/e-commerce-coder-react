@@ -3,7 +3,7 @@ import RatingStars from '../RatingStars/RatingStars'
 import RestaSvg from './RestaSvg'
 import SumaSvg from './SumaSvg'
 
-function DetalleProducto({ producto }) {
+function DetalleProducto({ producto, agregarProducto }) {
 	const [cantidad, setCantidad] = useState(1)
 
 	const { id, title, image, price, description, rating } = producto || {}
@@ -21,6 +21,8 @@ function DetalleProducto({ producto }) {
 		}
 		setCantidad(cantidad - 1)
 	}
+
+	
 
 	return (
 		<>
@@ -58,7 +60,8 @@ function DetalleProducto({ producto }) {
 
 				<div className="mt-10 flex justify-center">
 					<button
-						type="button"
+						type="button" 
+						onClick={()=> agregarProducto(cantidad)}
 						className="text-slate-50 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-7 py-3 text-center mr-2 mb-2"
 					>
 						Agregar al carrito

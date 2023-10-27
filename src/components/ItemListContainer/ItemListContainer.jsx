@@ -26,6 +26,8 @@ function ItemListContainer() {
 		getProductos()
 	}, [id])
 
+
+
 	return (
 		<>
 			<div className="grid justify-center md:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-3.5">
