@@ -4,8 +4,8 @@ import './CartWidget.css'
 function CartWidget() {
 	return (
 		<>
+			<CartSvg />
 
-			<CartSvg/>
 			<span>
 				<sup>5</sup>
 			</span>

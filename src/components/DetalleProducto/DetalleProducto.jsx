@@ -1,12 +1,27 @@
+import { useState } from 'react'
 import RatingStars from '../RatingStars/RatingStars'
 import RestaSvg from './RestaSvg'
 import SumaSvg from './SumaSvg'
 
 function DetalleProducto({ producto }) {
+	const [cantidad, setCantidad] = useState(0)
+
 	const { id, title, image, price, description, rating } = producto || {}
 	if (!title || !image || !price || !description || !id || !rating === undefined) {
 		return null
 	}
+
+	const handleCantidadSuma = () => {
+		setCantidad(cantidad + 1)
+	}
+
+	const handleCantidadResta = () => {
+		if (cantidad === 1) {
+			return
+		}
+		setCantidad(cantidad - 1)
+	}
+
 	return (
 		<>
 			<div className=" col-span-3 md:col-span-2 bg-white border p-3 rounded-2xl shadow-lg flex items-center">
@@ -32,9 +47,13 @@ function DetalleProducto({ producto }) {
 
 				<div className="flex gap-3">
 					<span>Cantidad:</span>
-					<SumaSvg />
-					2
-					<RestaSvg />
+					<button onClick={handleCantidadResta}>
+						<RestaSvg />
+					</button>
+					{cantidad}
+					<button onClick={handleCantidadSuma}>
+						<SumaSvg />
+					</button>
 				</div>
 
 				<div className="mt-10 flex justify-center">
