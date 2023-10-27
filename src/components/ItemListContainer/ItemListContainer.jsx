@@ -8,22 +8,21 @@ function ItemListContainer() {
 
 	const { category } = useParams()
 
-	async function getProductos() {
-		try {
-			const response = await axios.get('https://fakestoreapi.com/products')
-
-			if (category) {
-				const filterCategory = response.data.filter((categoria) => categoria.category === category)
-				setProductos(filterCategory)
-			} else {
-				setProductos(response.data)
-			}
-		} catch (err) {
-			console.error(err)
-		}
-	}
-
 	useEffect(() => {
+		async function getProductos() {
+			try {
+				const response = await axios.get('https://fakestoreapi.com/products')
+
+				if (category) {
+					const filterCategory = response.data.filter((categoria) => categoria.category === category)
+					setProductos(filterCategory)
+				} else {
+					setProductos(response.data)
+				}
+			} catch (err) {
+				console.error(err)
+			}
+		}
 		getProductos()
 	}, [category])
 

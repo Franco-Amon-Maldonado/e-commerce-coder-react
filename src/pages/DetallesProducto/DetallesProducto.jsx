@@ -14,19 +14,18 @@ function DetallesProducto() {
 
 	const navegate = useNavigate()
 
-	async function getProducto() {
-		setSpinner(true)
-		try {
-			const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
-			setProducto(response.data)
-		} catch (err) {
-			console.error(err)
-		} finally {
-			setSpinner(false)
-		}
-	}
-
 	useEffect(() => {
+		async function getProducto() {
+			setSpinner(true)
+			try {
+				const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
+				setProducto(response.data)
+			} catch (err) {
+				console.error(err)
+			} finally {
+				setSpinner(false)
+			}
+		}
 		getProducto()
 	}, [id])
 
@@ -38,8 +37,14 @@ function DetallesProducto() {
 			<Link onClick={() => navegate(-1)} className="flex items-center gap-3 font-bold mt-5">
 				<IconBack /> Volver
 			</Link>
-			<div className='flex justify-center'>
-				{spinner ? <Spinner />  : producto && producto.id ? <div className="grid md:grid-cols-3 gap-4 p-10"><DetalleProducto producto={producto} /></div>  : null}
+			<div className="flex justify-center">
+				{spinner ? (
+					<Spinner />
+				) : producto && producto.id ? (
+					<div className="grid md:grid-cols-3 gap-4 p-10">
+						<DetalleProducto producto={producto} />
+					</div>
+				) : null}
 			</div>
 		</main>
 	)
