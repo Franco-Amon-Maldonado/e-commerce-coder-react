@@ -1,20 +1,19 @@
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 
 export const CarritoContext = createContext()
 
 function CarritoContextComponente({ children }) {
-	
-    return (
-    
-    
-    <CarritoContext.Provider value={{
+	const [carrito, setCarrito] = useState([])
 
-    }}>
-        {children}
-    </CarritoContext.Provider>
-    
-    )
+	return (
+		<CarritoContext.Provider
+			value={{
+				carrito
+			}}
+		>
+			{children}
+		</CarritoContext.Provider>
+	)
 }
-
 
 export default CarritoContextComponente
