@@ -3,14 +3,17 @@ import CardProducts from '../CardProductos/CardProducts'
 import { useParams } from 'react-router-dom'
 import { getDocs, collection } from 'firebase/firestore'
 import { db } from '../../../fireStorageConfig'
+import Spinner from '../Spinner/Spinner'
 
 function ItemListContainer() {
 	const [productos, setProductos] = useState([])
+	const [spinner, setSpinner] = useState(false)
 
 	const { id } = useParams()
 
 	useEffect(() => {
 		async function getProductos() {
+			setSpinner(true)
 			try {
 				let productosCollection = collection(db, 'products')
 
@@ -30,6 +33,8 @@ function ItemListContainer() {
 				}
 			} catch (err) {
 				console.error(err)
+			} finally {
+				setSpinner(false)
 			}
 		}
 		getProductos()
@@ -37,9 +42,15 @@ function ItemListContainer() {
 
 	return (
 		<>
-			<div className="grid justify-center md:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-3.5">
-				{productos && productos.map((producto) => <CardProducts key={producto.id} producto={producto} />)}
-			</div>
+			{spinner ? (
+				<div className=" grid place-items-center">
+					<Spinner />
+				</div>
+			) : (
+				<div className="grid justify-center md:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-3.5">
+					{productos && productos.map((producto) => <CardProducts key={producto.id} producto={producto} />)}
+				</div>
+			)}
 		</>
 	)
 }
