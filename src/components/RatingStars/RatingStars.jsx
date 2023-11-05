@@ -1,7 +1,6 @@
 import './RatingStars.css'
 
-function RatingStars({ rating }) {
-	const { rate } = rating
+function RatingStars({ rate }) {
 	const starsToFill = Math.round(rate * 2) / 2
 
 	return (

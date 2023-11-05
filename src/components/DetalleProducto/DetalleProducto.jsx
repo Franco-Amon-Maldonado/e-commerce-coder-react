@@ -6,8 +6,8 @@ import SumaSvg from './SumaSvg'
 function DetalleProducto({ producto, agregarProducto, cantidadInicial=1 }) {
 	const [cantidad, setCantidad] = useState(cantidadInicial)
 
-	const { id, title, image, price, description, rating } = producto || {}
-	if (!title || !image || !price || !description || !id || !rating === undefined) {
+	const { id, title, image, price, description, rate } = producto || {}
+	if (!title || !image || !price || !description || !id || !rate === undefined) {
 		return null
 	}
 
@@ -33,9 +33,9 @@ function DetalleProducto({ producto, agregarProducto, cantidadInicial=1 }) {
 			<div className=" col-span-3 md:col-span-1 border p-3 rounded-2xl bg-white shadow-lg flex flex-col justify-between">
 				<h3 className="text-xl font-bold text-center [text-wrap:balance]">{title}</h3>
 				<div className="flex gap-2 mt-5">
-					<span>{rating.rate}</span>
+					<span>{rate}</span>
 					<span>
-						<RatingStars rating={rating} />
+						<RatingStars rate={rate} />
 					</span>
 				</div>
 

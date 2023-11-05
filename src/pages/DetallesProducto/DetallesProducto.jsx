@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useContext, useState } from 'react'
 import { useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
@@ -6,18 +5,18 @@ import DetalleProducto from '../../components/DetalleProducto/DetalleProducto'
 import Spinner from '../../components/Spinner/Spinner'
 import IconVolver from './IconVolver'
 import { CarritoContext } from '../../Context/CarritoContext'
+import { db } from '../../../fireStorageConfig'
+import { collection, doc, getDoc } from 'firebase/firestore'
 
 function DetallesProducto() {
 	const [producto, setProducto] = useState({})
 	const [spinner, setSpinner] = useState(false)
 
-	
 	let { id } = useParams()
 
 	const navegate = useNavigate()
 
 	const { agregarProductoCarrito, obtenerCantidad } = useContext(CarritoContext)
-	
 
 	let cantidadActual = obtenerCantidad(producto.id)
 
@@ -25,8 +24,10 @@ function DetallesProducto() {
 		async function getProducto() {
 			setSpinner(true)
 			try {
-				const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
-				setProducto(response.data)
+				const response = await collection(db, 'products')
+				const itemProducto = doc(response, id)
+				const data = await getDoc(itemProducto)
+				setProducto({ id: data.id, ...data.data() })
 			} catch (err) {
 				console.error(err)
 			} finally {
@@ -36,10 +37,10 @@ function DetallesProducto() {
 		getProducto()
 	}, [id])
 
-		const agregarProducto = (cantidad) => {
+	const agregarProducto = (cantidad) => {
 		let nuevoObjeto = {
 			...producto,
-			cantidad: cantidad
+			cantidad: cantidad,
 		}
 		agregarProductoCarrito(nuevoObjeto)
 	}
@@ -57,7 +58,7 @@ function DetallesProducto() {
 					<Spinner />
 				) : producto && producto.id ? (
 					<div className="grid md:grid-cols-3 gap-4 p-10">
-						<DetalleProducto producto={producto} agregarProducto={agregarProducto} cantidadInicial={cantidadActual}/>
+						<DetalleProducto producto={producto} agregarProducto={agregarProducto} cantidadInicial={cantidadActual} />
 					</div>
 				) : null}
 			</div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import CardProducts from '../CardProductos/CardProducts'
 import { useParams } from 'react-router-dom'
-import { getDocs, collection} from "firebase/firestore"
+import { getDocs, collection } from 'firebase/firestore'
 import { db } from '../../../fireStorageConfig'
 
 function ItemListContainer() {
@@ -12,13 +12,13 @@ function ItemListContainer() {
 	useEffect(() => {
 		async function getProductos() {
 			try {
-
 				let productosCollection = collection(db, 'products')
 
 				const respuesta = await getDocs(productosCollection)
-				const data = await respuesta.docs.map(productos => {
-					return { 
-						id: productos.id, ...productos.data()
+				const data = await respuesta.docs.map((productos) => {
+					return {
+						id: productos.id,
+						...productos.data(),
 					}
 				})
 
@@ -34,7 +34,6 @@ function ItemListContainer() {
 		}
 		getProductos()
 	}, [id])
-
 
 	return (
 		<>
