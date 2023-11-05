@@ -7,6 +7,7 @@ import IconVolver from './IconVolver'
 import { CarritoContext } from '../../Context/CarritoContext'
 import { db } from '../../../fireStorageConfig'
 import { collection, doc, getDoc } from 'firebase/firestore'
+import Swal from 'sweetalert2'
 
 function DetallesProducto() {
 	const [producto, setProducto] = useState({})
@@ -37,12 +38,32 @@ function DetallesProducto() {
 		getProducto()
 	}, [id])
 
+	const notificacion = () => {
+		const Toast = Swal.mixin({
+			toast: true,
+			position: 'bottom-end',
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			},
+		})
+
+		Toast.fire({
+			icon: 'success',
+			title: 'Se agregó éxitosamente',
+		})
+	}
+
 	const agregarProducto = (cantidad) => {
 		let nuevoObjeto = {
 			...producto,
 			cantidad: cantidad,
 		}
 		agregarProductoCarrito(nuevoObjeto)
+		notificacion()
 	}
 
 	return (

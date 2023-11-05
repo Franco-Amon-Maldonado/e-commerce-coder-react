@@ -21,7 +21,6 @@ function DetalleProducto({ producto, agregarProducto, cantidadInicial=1 }) {
 		}
 		setCantidad(cantidad - 1)
 	}
-
 	
 
 	return (

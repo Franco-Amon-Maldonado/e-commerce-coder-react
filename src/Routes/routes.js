@@ -1,6 +1,7 @@
 import Carrito from '../pages/Carrito/Carrito'
 import DetallesProducto from '../pages/DetallesProducto/DetallesProducto'
 import Home from '../pages/Inicio/Home'
+import VerificarCompra from '../pages/VerificarCompra/VerificarCompra'
 
 export const routes = [
 	{
@@ -22,5 +23,10 @@ export const routes = [
 		id: 'carrito',
 		path: '/carrito',
 		Element: Carrito,
+	},
+	{
+		id: 'carrito',
+		path: '/verificarcompra',
+		Element: VerificarCompra
 	},
 ]
