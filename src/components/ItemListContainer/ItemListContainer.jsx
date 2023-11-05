@@ -1,7 +1,8 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import CardProducts from '../CardProductos/CardProducts'
 import { useParams } from 'react-router-dom'
+import { getDocs, collection} from "firebase/firestore"
+import { db } from '../../../fireStorageConfig'
 
 function ItemListContainer() {
 	const [productos, setProductos] = useState([])
@@ -11,13 +12,21 @@ function ItemListContainer() {
 	useEffect(() => {
 		async function getProductos() {
 			try {
-				const response = await axios.get('https://fakestoreapi.com/products')
+
+				let productosCollection = collection(db, 'products')
+
+				const respuesta = await getDocs(productosCollection)
+				const data = await respuesta.docs.map(productos => {
+					return { 
+						id: productos.id, ...productos.data()
+					}
+				})
 
 				if (id) {
-					const filterCategoria = response.data.filter((categoria) => categoria.category === id)
+					const filterCategoria = data.filter((categoria) => categoria.category === id)
 					setProductos(filterCategoria)
 				} else {
-					setProductos(response.data)
+					setProductos(data)
 				}
 			} catch (err) {
 				console.error(err)
@@ -25,7 +34,6 @@ function ItemListContainer() {
 		}
 		getProductos()
 	}, [id])
-
 
 
 	return (
