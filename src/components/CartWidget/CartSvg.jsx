@@ -107,7 +107,8 @@ function CartSvg() {
 					</svg>
 				</Link>
 				<span className="absolute top-0 right-0">
-					<sup className="block bg-red-700 text-white rounded-xl p-2 py-3">{carrito.length}</sup>
+					{carrito.length === 0 ? " " : <sup className="block bg-red-700 text-white rounded-xl p-2 py-3">{carrito.length}</sup> }
+					
 				</span>
 			</span>
 		</>

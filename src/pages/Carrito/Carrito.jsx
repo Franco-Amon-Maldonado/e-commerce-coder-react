@@ -4,7 +4,7 @@ import CarritoItems from '../../components/CarritoItems/CarritoItems'
 import CarritoVacio from '../../components/CarritoVacio/CarritoVacio'
 
 function Carrito() {
-	const { carrito } = useContext(CarritoContext)
+	const { carrito, limpiarCarrito } = useContext(CarritoContext)
 
 	return (
 		<main className="container h-screen">
@@ -15,6 +15,11 @@ function Carrito() {
 					) : (
 						<CarritoVacio />
 					)}
+
+					<div>
+						{carrito.length > 0 ? (<button onClick={limpiarCarrito}>Vaciar Carrito</button> ): null}
+						
+					</div>
 				</div>
 
 				<div className="bg-white h-52 col-span-3 md:col-span-1 sticky top-28">

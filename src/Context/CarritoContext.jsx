@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 export const CarritoContext = createContext()
 
 function CarritoContextComponente({ children }) {
-	const [carrito, setCarrito] = useState([])
+	const [carrito, setCarrito] = useState(JSON.parse(localStorage.getItem("carrito")) || [])
 
 	const agregarProductoCarrito = (producto) => {
 		const existe = carrito.some((carrito) => carrito.id === producto.id)
@@ -17,8 +17,10 @@ function CarritoContextComponente({ children }) {
 				}
 			})
 			setCarrito(nuevoCarrito)
+			localStorage.setItem('carrito', JSON.stringify(nuevoCarrito))
 		} else {
 			setCarrito([...carrito, producto])
+			localStorage.setItem('carrito', JSON.stringify([...carrito, producto]))
 		}
 	}
 
@@ -27,12 +29,19 @@ function CarritoContextComponente({ children }) {
 		return productoCantidad?.cantidad
 	}
 
+	const limpiarCarrito = () => {
+		setCarrito([])
+		localStorage.removeItem('carrito')
+
+	}
+
 	return (
 		<CarritoContext.Provider
 			value={{
 				carrito,
 				agregarProductoCarrito,
-				obtenerCantidad
+				obtenerCantidad,
+				limpiarCarrito
 			}}
 		>
 			{children}
