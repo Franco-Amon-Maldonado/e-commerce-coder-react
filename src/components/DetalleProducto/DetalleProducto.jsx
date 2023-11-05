@@ -3,8 +3,8 @@ import RatingStars from '../RatingStars/RatingStars'
 import RestaSvg from './RestaSvg'
 import SumaSvg from './SumaSvg'
 
-function DetalleProducto({ producto, agregarProducto }) {
-	const [cantidad, setCantidad] = useState(1)
+function DetalleProducto({ producto, agregarProducto, cantidadInicial=1 }) {
+	const [cantidad, setCantidad] = useState(cantidadInicial)
 
 	const { id, title, image, price, description, rating } = producto || {}
 	if (!title || !image || !price || !description || !id || !rating === undefined) {

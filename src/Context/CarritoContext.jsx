@@ -11,7 +11,7 @@ function CarritoContextComponente({ children }) {
 		if (existe) {
 			let nuevoCarrito = carrito.map((item) => {
 				if (item.id === producto.id) {
-					return { ...item, cantidad: item.cantidad + producto.cantidad }
+					return { ...item, cantidad: producto.cantidad }
 				} else {
 					return item
 				}
@@ -22,11 +22,17 @@ function CarritoContextComponente({ children }) {
 		}
 	}
 
+	const obtenerCantidad = (id) => {
+		const productoCantidad = carrito.find((carrito) => carrito.id === id)
+		return productoCantidad?.cantidad
+	}
+
 	return (
 		<CarritoContext.Provider
 			value={{
 				carrito,
 				agregarProductoCarrito,
+				obtenerCantidad
 			}}
 		>
 			{children}
