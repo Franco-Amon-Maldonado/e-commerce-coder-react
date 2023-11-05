@@ -29,6 +29,12 @@ function CarritoContextComponente({ children }) {
 		return productoCantidad?.cantidad
 	}
 
+	const eliminarDelCarrito = (id) => {
+		const productoEliminado = carrito.filter((producto) => producto.id !== id)
+		setCarrito(productoEliminado)
+		localStorage.setItem('carrito', JSON.stringify(productoEliminado));
+	} 
+
 	const limpiarCarrito = () => {
 		setCarrito([])
 		localStorage.removeItem('carrito')
@@ -41,7 +47,8 @@ function CarritoContextComponente({ children }) {
 				carrito,
 				agregarProductoCarrito,
 				obtenerCantidad,
-				limpiarCarrito
+				limpiarCarrito,
+				eliminarDelCarrito
 			}}
 		>
 			{children}
