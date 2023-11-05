@@ -11,11 +11,15 @@ function DetallesProducto() {
 	const [producto, setProducto] = useState({})
 	const [spinner, setSpinner] = useState(false)
 
-	const { agregarProductoCarrito } = useContext(CarritoContext)
-
+	
 	let { id } = useParams()
 
 	const navegate = useNavigate()
+
+	const { agregarProductoCarrito, obtenerCantidad } = useContext(CarritoContext)
+	
+
+	let cantidadActual = obtenerCantidad(producto.id)
 
 	useEffect(() => {
 		async function getProducto() {
@@ -38,7 +42,6 @@ function DetallesProducto() {
 			cantidad: cantidad
 		}
 		agregarProductoCarrito(nuevoObjeto)
-		// return nuevoObjeto
 	}
 
 	return (
@@ -54,7 +57,7 @@ function DetallesProducto() {
 					<Spinner />
 				) : producto && producto.id ? (
 					<div className="grid md:grid-cols-3 gap-4 p-10">
-						<DetalleProducto producto={producto} agregarProducto={agregarProducto}/>
+						<DetalleProducto producto={producto} agregarProducto={agregarProducto} cantidadInicial={cantidadActual}/>
 					</div>
 				) : null}
 			</div>
