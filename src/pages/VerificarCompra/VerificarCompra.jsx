@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function VerificarCompra() {
-	const [mensaje, setMensaje] = useState('')
+	const [error, setError] = useState({})
 	const [usuarioDatos, setUsuarioDatos] = useState({
 		nombre: '',
 		telefono: '',
@@ -35,26 +35,60 @@ function VerificarCompra() {
 		})
 	}
 
+	const validacionForm = () => {
+		let errors = {}
+		let regexNombre = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/
+		let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/
+		let regexTelefono = /^[0-9]{1,11}$/
+
+		if (!usuarioDatos.nombre.trim()) {
+			errors.nombre = 'El campo nombre es requerido'
+		} else if (!regexNombre.test(usuarioDatos.nombre.trim())) {
+			errors.nombre = "El campo 'nombre' solo acepta letras y espacios en blanco "
+		}
+
+		if (!usuarioDatos.telefono.trim()) {
+			errors.telefono = 'El campo telefono es requerido o es incorrecto'
+		} else if (!regexTelefono.test(usuarioDatos.telefono.trim())) {
+			errors.telefono = "El campo 'telefono' es incorrecto"
+		}
+
+		if (!usuarioDatos.email.trim()) {
+			errors.email = 'El campo email es requerido o es incorrecto'
+		} else if (!regexEmail.test(usuarioDatos.email.trim())) {
+			errors.email = "El campo 'email' es incorrecto"
+		}
+
+		return errors
+	}
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		if (Object.values(usuarioDatos).includes('')) {
-			setMensaje('Debes rellenar todos los campos')
-		} else {
-			let orden = {
-				buyer: usuarioDatos,
-				items: carrito,
-				total,
-				date: serverTimestamp(),
-			}
+		const erroresTemp = validacionForm()
 
-			const colleccionOrdenes = collection(db, 'ordenes')
-
-			const respuesta = await addDoc(colleccionOrdenes, orden)
-			setOrdenId(respuesta.id)
-			notificacion()
-			limpiarCarrito()
+		if (Object.keys(erroresTemp).length > 0) {
+			setError(erroresTemp)
+			return
 		}
+
+		let orden = {
+			buyer: usuarioDatos,
+			items: carrito,
+			total,
+			date: serverTimestamp(),
+		}
+
+		const colleccionOrdenes = collection(db, 'ordenes')
+
+		const respuesta = await addDoc(colleccionOrdenes, orden)
+		setOrdenId(respuesta.id)
+		notificacion()
+		limpiarCarrito()
+	}
+
+	const handleBlur = (campo) => {
+		setError({ ...error, [campo]: validacionForm()[campo] })
 	}
 
 	return (
@@ -85,32 +119,39 @@ function VerificarCompra() {
 						<header>
 							<h2 className="text-xs text-gray-400">Ingrese sus datos para finalizar la compra</h2>
 						</header>
-						<p>{mensaje}</p>
+
 						<div className="flex gap-5 flex-col mt-10">
 							<TextField
 								onChange={handleChangeDatos}
+								onBlur={() => handleBlur('nombre')}
 								name="nombre"
 								type="text"
 								id="outlined-basic"
 								label="Nombre"
 								variant="outlined"
 							/>
+
+							{error.nombre && <p className="text-red-500 text-xs">{error.nombre}</p>}
 							<TextField
 								onChange={handleChangeDatos}
+								onBlur={() => handleBlur('telefono')}
 								name="telefono"
 								type="tel"
 								id="outlined-basic"
 								label="Teléfono"
 								variant="outlined"
 							/>
+							{error.telefono && <p className="text-red-500 text-xs">{error.telefono}</p>}
 							<TextField
 								onChange={handleChangeDatos}
+								onBlur={() => handleBlur('email')}
 								name="email"
 								type="email"
 								id="outlined-basic"
 								label="Email"
 								variant="outlined"
 							/>
+							{error.email && <p className="text-red-500 text-xs">{error.email}</p>}
 						</div>
 
 						<button className="mt-5 mx-auto block text-slate-50 bg-gradient-to-r uppercase self-end font-semibold from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg text-sm px-7 py-3 text-center">
