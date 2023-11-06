@@ -7,7 +7,7 @@ function NavBar() {
 	return (
 		<>
 			<div className="flex items-center justify-center">
-				<Link to="/">Logo</Link>
+				<Link to="/">Tienda Online</Link>
 			</div>
 			<div className="nav">
 				<nav>
