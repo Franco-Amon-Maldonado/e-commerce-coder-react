@@ -1,9 +1,10 @@
-import { TextField, dividerClasses } from '@mui/material'
+import { TextField } from '@mui/material'
 import { useContext, useState } from 'react'
 import { CarritoContext } from '../../Context/CarritoContext'
 import { serverTimestamp, collection, addDoc } from 'firebase/firestore'
 import { db } from '../../../fireStorageConfig'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function VerificarCompra() {
 	const [usuarioDatos, setUsuarioDatos] = useState({
@@ -14,7 +15,7 @@ function VerificarCompra() {
 
 	const [ordenId, setOrdenId] = useState(null)
 
-	const { carrito, calcularTotalCarrito } = useContext(CarritoContext)
+	const { carrito, calcularTotalCarrito, limpiarCarrito } = useContext(CarritoContext)
 
 	const total = calcularTotalCarrito()
 
@@ -24,6 +25,14 @@ function VerificarCompra() {
 			[e.target.name]: e.target.value,
 		})
 	}
+
+    const notificacion = () => {
+        Swal.fire({
+            title: "Compra realizada con éxito",
+            text: "Pulse en el boton para continuar",
+            icon: "success"
+          });
+    }
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -38,6 +47,8 @@ function VerificarCompra() {
 
 		const respuesta = await addDoc(colleccionOrdenes, orden)
 		setOrdenId(respuesta.id)
+        notificacion()
+        limpiarCarrito()
 	}
 
 	return (
@@ -53,7 +64,12 @@ function VerificarCompra() {
 						<p className="text-center mt-10 text-sm">
 							Su numero de ticket es: <span className="[color:#2563EB] font-bold text-lg">{ordenId}</span>{' '}
 						</p>
-                        <Link className=' mx-auto block text-slate-50 bg-gradient-to-r uppercase self-end font-semibold from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg text-sm px-7 py-3 text-center' to="/">Volver al inicio</Link>
+						<Link
+							className=" mx-auto block text-slate-50 bg-gradient-to-r uppercase self-end font-semibold from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg text-sm px-7 py-3 text-center"
+							to="/"
+						>
+							Volver al inicio
+						</Link>
 					</div>
 				) : (
 					<form
