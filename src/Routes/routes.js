@@ -25,8 +25,8 @@ export const routes = [
 		Element: Carrito,
 	},
 	{
-		id: 'carrito',
-		path: '/verificarcompra',
+		id: 'finalizarcompra',
+		path: '/verificar-compra',
 		Element: VerificarCompra
 	},
 ]
