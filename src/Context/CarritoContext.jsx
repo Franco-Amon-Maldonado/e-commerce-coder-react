@@ -30,57 +30,48 @@ function CarritoContextComponente({ children }) {
 		return productoCantidad?.cantidad
 	}
 
-	const mensajeConfirmacion = (mensaje, confirmCallback) => {
+	const eliminarDelCarrito = (id) => {
+		const productoEliminado = carrito.filter((producto) => producto.id !== id)
 		Swal.fire({
-			title: mensaje.title || 'Confirmación',
-			text: mensaje.text || '¿Está seguro de realizar esta acción?',
-			icon: mensaje.icon || 'warning',
+			title: 'Confirmación',
+			text: '¿Está seguro de realizar esta acción?',
+			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: mensaje.confirmButtonText || 'Si, deseo eliminarlo',
+			confirmButtonText: 'Si, deseo eliminarlo',
 		}).then((result) => {
 			if (result.isConfirmed) {
-				confirmCallback()
 				Swal.fire({
 					title: 'Eliminado',
 					text: 'Producto eliminado del carrito',
 					icon: 'success',
 				})
+				setCarrito(productoEliminado)
+				localStorage.setItem('carrito', JSON.stringify(productoEliminado))
 			}
 		})
 	}
 
-	const eliminarDelCarrito = (id) => {
-		const mensaje = {
-			title: 'Eliminar producto',
-			text: '¿Desea eliminar este producto del carrito?',
-			icon: 'warning',
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Sí, eliminar',
-		}
-
-		mensajeConfirmacion(mensaje, () => {
-			const productoEliminado = carrito.filter((producto) => producto.id !== id)
-			setCarrito(productoEliminado)
-			localStorage.setItem('carrito', JSON.stringify(productoEliminado))
-		})
-	}
-
 	const limpiarCarrito = () => {
-		const mensaje = {
-			title: 'Vaciar carrito',
-			text: '¿Desea vaciar el carrito?',
+		Swal.fire({
+			title: 'Confirmación',
+			text: '¿Está seguro de realizar esta acción?',
 			icon: 'warning',
+			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Sí, deseo vaciarlo',
-		}
-
-		mensajeConfirmacion(mensaje, () => {
-			setCarrito([])
-			localStorage.removeItem('carrito')
+			confirmButtonText: 'Si, deseo vaciarlo',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					title: 'Vaciado',
+					text: 'Carrito vaciado con éxito',
+					icon: 'success',
+				})
+				setCarrito([])
+				localStorage.removeItem('carrito')
+			}
 		})
 	}
 
