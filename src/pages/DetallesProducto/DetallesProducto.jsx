@@ -17,7 +17,7 @@ function DetallesProducto() {
 
 	const navegate = useNavigate()
 
-	const { agregarProductoCarrito, obtenerCantidad } = useContext(CarritoContext)
+	const { agregarProductoCarrito, obtenerCantidad, actualizarCantidadProductoCarrito, carrito } = useContext(CarritoContext)
 
 	let cantidadActual = obtenerCantidad(producto.id)
 
@@ -58,11 +58,18 @@ function DetallesProducto() {
 	}
 
 	const agregarProducto = (cantidad) => {
-		let nuevoObjeto = {
-			...producto,
-			cantidad: cantidad,
+		const existe = carrito.some((item) => item.id === producto.id)
+
+		if (existe) {
+			actualizarCantidadProductoCarrito(producto.id, cantidad)
+		} else {
+			let nuevoObjeto = {
+				...producto,
+				cantidad: cantidad,
+			}
+			agregarProductoCarrito(nuevoObjeto)
 		}
-		agregarProductoCarrito(nuevoObjeto)
+
 		notificacion()
 	}
 
