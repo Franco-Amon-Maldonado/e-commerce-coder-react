@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react'
+import Swal from 'sweetalert2'
 
 export const CarritoContext = createContext()
 
@@ -29,15 +30,58 @@ function CarritoContextComponente({ children }) {
 		return productoCantidad?.cantidad
 	}
 
+	const mensajeConfirmacion = (mensaje, confirmCallback) => {
+		Swal.fire({
+			title: mensaje.title || 'Confirmación',
+			text: mensaje.text || '¿Está seguro de realizar esta acción?',
+			icon: mensaje.icon || 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: mensaje.confirmButtonText || 'Si, deseo eliminarlo',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				confirmCallback()
+				Swal.fire({
+					title: 'Eliminado',
+					text: 'Producto eliminado del carrito',
+					icon: 'success',
+				})
+			}
+		})
+	}
+
 	const eliminarDelCarrito = (id) => {
-		const productoEliminado = carrito.filter((producto) => producto.id !== id)
-		setCarrito(productoEliminado)
-		localStorage.setItem('carrito', JSON.stringify(productoEliminado))
+		const mensaje = {
+			title: 'Eliminar producto',
+			text: '¿Desea eliminar este producto del carrito?',
+			icon: 'warning',
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Sí, eliminar',
+		}
+
+		mensajeConfirmacion(mensaje, () => {
+			const productoEliminado = carrito.filter((producto) => producto.id !== id)
+			setCarrito(productoEliminado)
+			localStorage.setItem('carrito', JSON.stringify(productoEliminado))
+		})
 	}
 
 	const limpiarCarrito = () => {
-		setCarrito([])
-		localStorage.removeItem('carrito')
+		const mensaje = {
+			title: 'Vaciar carrito',
+			text: '¿Desea vaciar el carrito?',
+			icon: 'warning',
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Sí, deseo vaciarlo',
+		}
+
+		mensajeConfirmacion(mensaje, () => {
+			setCarrito([])
+			localStorage.removeItem('carrito')
+		})
 	}
 
 	const calcularTotalCarrito = () => {

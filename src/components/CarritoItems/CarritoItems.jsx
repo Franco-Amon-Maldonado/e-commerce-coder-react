@@ -36,7 +36,7 @@ function CarritoItems({ carrito }) {
 							</button>
 
 							<button onClick={handleCantidadResta}>
-								<RestaSvg cantidad={cantidad}/>
+								<RestaSvg cantidad={cantidad} />
 							</button>
 						</div>
 					</div>

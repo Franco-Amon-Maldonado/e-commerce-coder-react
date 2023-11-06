@@ -27,8 +27,11 @@ function Carrito() {
 					<div>
 						{carrito.length > 0 && (
 							<div className="flex flex-col text-center  gap-6 mt-5">
-								<h2 className="text-2xl font-bold"> Total a pagar: ${total}</h2>
-								<Link to="/verificar-compra" className="text-slate-50 bg-gradient-to-r self-center uppercase font-semibold from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg text-sm px-7 py-3 text-center mr-2 mb-2">
+								<h2 className="text-2xl font-bold"> Total a pagar: ${parseFloat(total).toFixed(2)}</h2>
+								<Link
+									to="/verificar-compra"
+									className="text-slate-50 bg-gradient-to-r self-center uppercase font-semibold from-cyan-500 to-blue-500 hover:bg-gradient-to-bl transition-opacity hover:opacity-80 duration-300 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg text-sm px-7 py-3 text-center mr-2 mb-2"
+								>
 									finaliza compra
 								</Link>
 								<button

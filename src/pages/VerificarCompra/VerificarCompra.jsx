@@ -26,13 +26,13 @@ function VerificarCompra() {
 		})
 	}
 
-    const notificacion = () => {
-        Swal.fire({
-            title: "Compra realizada con éxito",
-            text: "Pulse en el boton para continuar",
-            icon: "success"
-          });
-    }
+	const notificacion = () => {
+		Swal.fire({
+			title: 'Compra realizada con éxito',
+			text: 'Pulse en el boton para continuar',
+			icon: 'success',
+		})
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -47,8 +47,8 @@ function VerificarCompra() {
 
 		const respuesta = await addDoc(colleccionOrdenes, orden)
 		setOrdenId(respuesta.id)
-        notificacion()
-        limpiarCarrito()
+		notificacion()
+		limpiarCarrito()
 	}
 
 	return (

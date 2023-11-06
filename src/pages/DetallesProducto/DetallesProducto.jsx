@@ -17,7 +17,8 @@ function DetallesProducto() {
 
 	const navegate = useNavigate()
 
-	const { agregarProductoCarrito, obtenerCantidad, actualizarCantidadProductoCarrito, carrito } = useContext(CarritoContext)
+	const { agregarProductoCarrito, obtenerCantidad, actualizarCantidadProductoCarrito, carrito } =
+		useContext(CarritoContext)
 
 	let cantidadActual = obtenerCantidad(producto.id)
 
