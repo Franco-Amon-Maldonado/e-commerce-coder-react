@@ -79,12 +79,16 @@ function VerificarCompra() {
 			date: serverTimestamp(),
 		}
 
-		const colleccionOrdenes = collection(db, 'ordenes')
+		try {
+			const colleccionOrdenes = collection(db, 'ordenes')
 
-		const respuesta = await addDoc(colleccionOrdenes, orden)
-		setOrdenId(respuesta.id)
-		notificacion()
-		limpiarCarrito()
+			const respuesta = await addDoc(colleccionOrdenes, orden)
+			setOrdenId(respuesta.id)
+			notificacion()
+			limpiarCarrito()
+		} catch (error) {
+			console.error(error)
+		}
 	}
 
 	const handleBlur = (campo) => {
