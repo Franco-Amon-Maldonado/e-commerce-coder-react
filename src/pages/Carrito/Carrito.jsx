@@ -2,15 +2,22 @@ import { useContext } from 'react'
 import { CarritoContext } from '../../Context/CarritoContext'
 import CarritoItems from '../../components/CarritoItems/CarritoItems'
 import CarritoVacio from '../../components/CarritoVacio/CarritoVacio'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import IconVolver from '../DetallesProducto/IconVolver'
 
 function Carrito() {
 	const { carrito, limpiarCarrito, calcularTotalCarrito } = useContext(CarritoContext)
 
 	const total = calcularTotalCarrito()
-
+	const navegate = useNavigate()
 	return (
 		<main className="container h-screen">
+			<h1 className="text-base md:text-2xl [color:#1976D2] font-extrabold text-center mt-10 mx-auto [width:70%;] bg-white border p-3 rounded-2xl shadow-md uppercase">
+				Carrito de compras
+			</h1>
+			<Link onClick={() => navegate(-1)} className="flex items-center gap-3 font-bold mt-5">
+				<IconVolver /> Volver
+			</Link>
 			<section className="grid grid-cols-3 mt-10 gap-7 p-10">
 				<div className="bg-white [minHeight:500px] col-span-3 lg:col-span-2 rounded-md">
 					<h1 className="text-2xl ml-5 p-5 font-bold">Productos</h1>
