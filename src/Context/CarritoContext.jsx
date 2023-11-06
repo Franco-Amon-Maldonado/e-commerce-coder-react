@@ -21,6 +21,7 @@ function CarritoContextComponente({ children }) {
 		} else {
 			setCarrito([...carrito, producto])
 			localStorage.setItem('carrito', JSON.stringify([...carrito, producto]))
+			
 		}
 	}
 
@@ -41,6 +42,12 @@ function CarritoContextComponente({ children }) {
 
 	}
 
+	const calcularTotalCarrito = () => {
+		const total = carrito.reduce((accum, total) => (total.price * total.cantidad) + accum, 0)
+		return total
+	}
+
+
 	return (
 		<CarritoContext.Provider
 			value={{
@@ -48,7 +55,8 @@ function CarritoContextComponente({ children }) {
 				agregarProductoCarrito,
 				obtenerCantidad,
 				limpiarCarrito,
-				eliminarDelCarrito
+				eliminarDelCarrito,
+				calcularTotalCarrito
 			}}
 		>
 			{children}
