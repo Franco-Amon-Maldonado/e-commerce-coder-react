@@ -54,25 +54,8 @@ function CarritoContextComponente({ children }) {
 	}
 
 	const limpiarCarrito = () => {
-		Swal.fire({
-			title: 'Confirmación',
-			text: '¿Está seguro de realizar esta acción?',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, deseo vaciarlo',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				Swal.fire({
-					title: 'Vaciado',
-					text: 'Carrito vaciado con éxito',
-					icon: 'success',
-				})
-				setCarrito([])
-				localStorage.removeItem('carrito')
-			}
-		})
+		setCarrito([])
+		localStorage.removeItem('carrito')
 	}
 
 	const calcularTotalCarrito = () => {

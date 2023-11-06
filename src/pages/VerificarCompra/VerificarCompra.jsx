@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function VerificarCompra() {
+	const [mensaje, setMensaje] = useState('')
 	const [usuarioDatos, setUsuarioDatos] = useState({
 		nombre: '',
 		telefono: '',
@@ -36,19 +37,24 @@ function VerificarCompra() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		let orden = {
-			buyer: usuarioDatos,
-			items: carrito,
-			total,
-			date: serverTimestamp(),
+
+		if (Object.values(usuarioDatos).includes('')) {
+			setMensaje('Debes rellenar todos los campos')
+		} else {
+			let orden = {
+				buyer: usuarioDatos,
+				items: carrito,
+				total,
+				date: serverTimestamp(),
+			}
+
+			const colleccionOrdenes = collection(db, 'ordenes')
+
+			const respuesta = await addDoc(colleccionOrdenes, orden)
+			setOrdenId(respuesta.id)
+			notificacion()
+			limpiarCarrito()
 		}
-
-		const colleccionOrdenes = collection(db, 'ordenes')
-
-		const respuesta = await addDoc(colleccionOrdenes, orden)
-		setOrdenId(respuesta.id)
-		notificacion()
-		limpiarCarrito()
 	}
 
 	return (
@@ -79,7 +85,7 @@ function VerificarCompra() {
 						<header>
 							<h2 className="text-xs text-gray-400">Ingrese sus datos para finalizar la compra</h2>
 						</header>
-
+						<p>{mensaje}</p>
 						<div className="flex gap-5 flex-col mt-10">
 							<TextField
 								onChange={handleChangeDatos}
