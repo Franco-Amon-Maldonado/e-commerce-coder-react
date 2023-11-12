@@ -1,8 +1,30 @@
-# React + Vite
+# Carrito de compras
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Herramientas utilizadas:
 
-Currently, two official plugins are available:
+[React](https://es.react.dev/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[MUI](https://mui.com/material-ui)
+
+[SweetAlert2](https://sweetalert2.github.io/)
+
+[TaildwindCSS](https://tailwindcss.com/)
+
+[Firebase](https://firebase.google.com/?hl=es-419)
+
+<div style="display: flex; gap: 10px; justify-content: center; margin: 5rem 0 5rem;">
+
+<img src="https://www.svgrepo.com/show/374118/tailwind.svg" width="80" height="80">
+
+<img src="https://www.svgrepo.com/show/374167/vite.svg" width="80" height="80">
+
+<img src="https://www.svgrepo.com/show/354048/material-ui.svg" width="80" height="80">
+
+<img src="https://www.svgrepo.com/show/373595/firebase.svg" width="80" height="80">
+
+</div>
+
+
+```
+npm install
+```
