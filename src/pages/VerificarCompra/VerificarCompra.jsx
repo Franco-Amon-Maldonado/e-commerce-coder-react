@@ -3,8 +3,9 @@ import { useContext, useState } from 'react'
 import { CarritoContext } from '../../Context/CarritoContext'
 import { serverTimestamp, collection, addDoc } from 'firebase/firestore'
 import { db } from '../../../fireStorageConfig'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import IconVolver from '../DetallesProducto/IconVolver'
 
 function VerificarCompra() {
 	const [error, setError] = useState({})
@@ -13,6 +14,8 @@ function VerificarCompra() {
 		telefono: '',
 		email: '',
 	})
+
+	const navegate = useNavigate()
 
 	const [ordenId, setOrdenId] = useState(null)
 
@@ -100,6 +103,14 @@ function VerificarCompra() {
 			<h1 className="text-base md:text-2xl [color:#1976D2] font-extrabold text-center mt-10 mx-auto [width:70%;] bg-white border p-3 rounded-2xl shadow-md uppercase">
 				Finaliza tu compra
 			</h1>
+			<div className="flex justify-between mt-5">
+				<Link onClick={() => navegate(-1)} className="flex items-center gap-3 font-bold ">
+					<IconVolver /> Volver
+				</Link>
+				<Link className="font-semibold underline" onClick={() => navegate(-3)}>
+					Ir al Inicio
+				</Link>
+			</div>
 
 			<>
 				{ordenId ? (
