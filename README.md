@@ -1,5 +1,9 @@
 # Carrito de compras
 
+### Deployment:
+
+[Visitar](https://e-commerce-coder-react-lmu5b2kdo-franco-amon-maldonado.vercel.app/)
+
 ### Herramientas utilizadas:
 
 [React](https://es.react.dev/)
@@ -12,7 +16,7 @@
 
 [Firebase](https://firebase.google.com/?hl=es-419)
 
-<div style="display: flex; gap: 10px; justify-content: center; margin: 5rem 0 5rem;">
+<div style="display: flex; gap: 10px;">
 
 <img src="https://www.svgrepo.com/show/374118/tailwind.svg" width="80" height="80">
 
