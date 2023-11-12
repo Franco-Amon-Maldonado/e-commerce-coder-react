@@ -72,6 +72,10 @@ function DetallesProducto() {
 		}
 
 		notificacion()
+
+		setTimeout(() => {
+			navegate("/carrito")
+		}, 2000)
 	}
 
 	return (
@@ -82,6 +86,8 @@ function DetallesProducto() {
 			<Link onClick={() => navegate(-1)} className="flex items-center gap-3 font-bold mt-5">
 				<IconVolver /> Volver
 			</Link>
+			
+
 			<div className="flex justify-center">
 				{spinner ? (
 					<Spinner />

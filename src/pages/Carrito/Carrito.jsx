@@ -15,9 +15,15 @@ function Carrito() {
 			<h1 className="text-base md:text-2xl [color:#1976D2] font-extrabold text-center mt-10 mx-auto [width:70%;] bg-white border p-3 rounded-2xl shadow-md uppercase">
 				Carrito de compras
 			</h1>
-			<Link onClick={() => navegate(-1)} className="flex items-center gap-3 font-bold mt-5">
-				<IconVolver /> Volver
-			</Link>
+			<div className="flex justify-between mt-5">
+				<Link onClick={() => navegate(-1)} className="flex items-center gap-3 font-bold ">
+					<IconVolver /> Volver
+				</Link>
+				<Link className="font-semibold underline" onClick={() => navegate(-2)}>
+					Ir al Inicio
+				</Link>
+			</div>
+
 			<section className="grid grid-cols-3 mt-10 gap-7 p-10">
 				<div className="bg-white [minHeight:500px] col-span-3 lg:col-span-2 rounded-md">
 					<h1 className="text-2xl ml-5 p-5 font-bold">Productos</h1>
