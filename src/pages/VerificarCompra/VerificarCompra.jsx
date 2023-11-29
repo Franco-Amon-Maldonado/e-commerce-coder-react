@@ -129,7 +129,7 @@ function VerificarCompra() {
 				) : (
 					<form
 						onSubmit={handleSubmit}
-						className="bg-white border p-10 rounded-2xl shadow-md uppercase w-full md:[width:50%;] mt-10 mx-auto [height:50%;]"
+						className="bg-white border p-10 rounded-2xl shadow-md uppercase w-full max-w-2xl mt-10 mx-auto"
 					>
 						<header>
 							<h2 className="text-xs text-gray-400">Ingrese sus datos para finalizar la compra</h2>

@@ -6,7 +6,7 @@ import DropdownMenu from './DropdownMenu'
 function NavBar() {
 	return (
 		<>
-			<div className="flex items-center justify-center">
+			<div className="flex items-center justify-center text-xs md:text-base">
 				<Link to="/">Tienda Online</Link>
 			</div>
 			<div className="nav">

@@ -92,7 +92,7 @@ function DetallesProducto() {
 				{spinner ? (
 					<Spinner />
 				) : producto && producto.id ? (
-					<div className="grid md:grid-cols-3 gap-4 p-10">
+					<div className="grid md:grid-flow-col gap-4 p-8">
 						<DetalleProducto producto={producto} agregarProducto={agregarProducto} cantidadInicial={cantidadActual} />
 					</div>
 				) : null}

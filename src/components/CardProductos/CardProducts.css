@@ -2,7 +2,9 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
+    font-size: 0.7em !important;
+    padding: 0 0.7rem;;
 }
 
 #informacion{
@@ -15,4 +17,9 @@
 .titulo{
     font-weight: bold !important;
     text-transform: uppercase;
+    font-size: 0.8em !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }

@@ -47,7 +47,7 @@ function ItemListContainer() {
 					<Spinner />
 				</div>
 			) : (
-				<div className="grid justify-center md:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-3.5">
+				<div className="grid grid-flow-row-dense grid-cols-2 justify-center md:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-3.5">
 					{productos && productos.map((producto) => <CardProducts key={producto.id} producto={producto} />)}
 				</div>
 			)}

@@ -24,11 +24,11 @@ function DetalleProducto({ producto, agregarProducto, cantidadInicial = 1 }) {
 
 	return (
 		<>
-			<div className=" col-span-3 md:col-span-2 bg-white border p-3 rounded-2xl shadow-lg flex items-center">
-				<img className="object-cover w-8/12 lg:w-6/12 mx-auto" src={image} alt="" />
+			<div className=" bg-white border rounded-2xl shadow-lg items-center flex">
+				<img className="object-cover w-6/12 md:w-6/12 mx-auto p-3 md:p-0" src={image} alt="" />
 			</div>
 
-			<div className=" col-span-3 md:col-span-1 border p-3 rounded-2xl bg-white shadow-lg flex flex-col justify-between">
+			<div className=" border p-3 rounded-2xl bg-white shadow-lg flex flex-col justify-between">
 				<h3 className="text-xl font-bold text-center [text-wrap:balance]">{title}</h3>
 				<div className="flex gap-2 mt-5">
 					<span>{rate}</span>
@@ -37,7 +37,7 @@ function DetalleProducto({ producto, agregarProducto, cantidadInicial = 1 }) {
 					</span>
 				</div>
 
-				<div className="mt-10">
+				<div className="text-sm md:text-base mt-10">
 					<p className="px-2">{description}</p>
 				</div>
 

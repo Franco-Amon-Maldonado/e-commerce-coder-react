@@ -3,7 +3,7 @@ import SvgCarritoVacio from './SvgCarritoVacio'
 
 function CarritoVacio() {
 	return (
-		<div className="flex flex-col mt-10 justify-center items-center gap-4">
+		<div className="flex flex-col mt-10 justify-center items-center gap-4 py-10">
 			<SvgCarritoVacio />
 			<h3 className="text-center">¡Empieza un carrito de compras!</h3>
 			<Link

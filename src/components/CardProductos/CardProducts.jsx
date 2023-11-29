@@ -8,24 +8,23 @@ function CardProducts({ producto }) {
 		return null
 	}
 	return (
-		<Card sx={{ maxWidth: 345, borderRadius: 10 }} className="flex flex-col justify-between text-center p-5">
+		<Card sx={{ maxWidth: 345, borderRadius: 10 }} className="flex flex-col justify-between text-center px-3 py-2">
 			<Link className="h-full" to={`/detalle/${id}`}>
 				<CardActionArea id="informacion">
 					<CardMedia
 						component="img"
 						image={image}
-						style={{ width: '50%', height: 'auto' }}
-						className="m-auto"
+						style={{ width: '40%', height: 'auto' }}
 						alt={`Producto de la imagen ${title}`}
 					/>
-					<CardContent className="mt-5">
-						<Typography gutterBottom variant="subtitle1" className="titulo">
+					<CardContent className="space-y-4">
+						<Typography className="titulo">
 							{title}
 						</Typography>
 						<Typography variant="body2" color="text.secondary" className="parrafo">
 							{description}
 						</Typography>
-						<Typography style={{ fontWeight: 'bold' }} className="p-5">
+						<Typography style={{ fontWeight: 'bold' }}>
 							Precio: ${price}
 						</Typography>
 					</CardContent>
@@ -36,7 +35,7 @@ function CardProducts({ producto }) {
 					variant="contained"
 					size="small"
 					color="primary"
-					sx={{ paddingX: '15px', paddingY: '8px', fontSize: '0.7rem' }}
+					sx={{ paddingX: '15px', paddingY: '8px', fontSize: '0.6rem', borderRadius: '999px' }}
 				>
 					<Link to={`/detalle/${id}`}> Ver producto </Link>
 				</Button>
